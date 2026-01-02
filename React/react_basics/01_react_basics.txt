@@ -1,0 +1,74 @@
+
+- understanding basics of react and integration using cdn:
+    - official website link: https://legacy.reactjs.org/docs/cdn-links.html
+    - react :
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    - react router dom:
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+------------------------------------------------------------------------
+
+basic React data flow:
+
+create element -> append in root -> render root
+
+or correct way:
+
+index.html -> main.js -> app.js
+
+-------------------------------------------------------------------------
+
+code implementation template:
+
+example:
+    let h1 = React.createElement('h1', null, "Hey React, Nice to meet you buddy");
+    let main = document.querySelector('main');
+    let root = ReactDOM.createRoot(main);
+    root.render(h1);
+
+-----------------------------------------------------------------------------------
+
+important things to remember:
+
+    return only one thing in render
+
+    example wrong:
+        let h1 = React.createElement('h1', null, "Hey React, This is H1 Nice to meet you buddy");
+        let h2 = React.createElement('h2', null, "Hey React, This is H2 Nice to meet you buddy");
+        let main = document.querySelector('main');
+        let root = ReactDOM.createRoot(main);
+        root.render(h1,h2); // error
+
+    solution: refer function : renderingMultipleElementInRoot();
+
+function renderingMultipleElementInRoot() {
+
+
+    function errorInRendering() {
+        let h1 = React.createElement('h1', null, "Hey React, This is H1 Nice to meet you buddy");
+        let h2 = React.createElement('h2', null, "Hey React, This is H2 Nice to meet you buddy");
+        let main = document.querySelector('main');
+        let root = ReactDOM.createRoot(main);
+        root.render(h1, h2);// error: You passed a second argument to root.render(...) but it only accepts one argument.
+    }
+
+    function usingArrayForMultipleFileRendering() {
+        let h1 = React.createElement('h1', null, "Hey React, This is H1 Nice to meet you buddy");
+        let h2 = React.createElement('h2', null, "Hey React, This is H2 Nice to meet you buddy");
+        let main = document.querySelector('main');
+        let root = ReactDOM.createRoot(main);
+        root.render([h1, h2]);// Warning: Each child in a list should have a unique "key" prop
+    }
+
+    function usingParentElementAndAddElements() {
+        let h1 = React.createElement('h1', null, "Hey React, This is H1 Nice to meet you buddy");
+        let h2 = React.createElement('h2', null, "Hey React, This is H2 Nice to meet you buddy");
+        let parent = React.createElement('div', { className: "parent" }, h1, h2);
+        let main = document.querySelector('main');
+        let root = ReactDOM.createRoot(main);
+        root.render(parent);
+    }
+}
+
+
+

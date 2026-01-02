@@ -1,0 +1,86 @@
+@import url("./index.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary-background-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+  color: var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--lg);
+  align-items: center;
+}
+.App form {
+  height: 100vh;
+  width: 50%;
+  padding: var(--xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--md);
+}
+.App form input,
+.App form button {
+  width: 100%;
+  padding: var(--lg);
+  font-size: var(--text-md);
+  border-radius: var(--md);
+  border: none;
+}
+.App form button {
+  background-color: var(--primary-btn-color);
+  color: var(--primary-text-color);
+  padding: var(--text-md) var(--2xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.App form h1 {
+  font-size: var(--2xl);
+}
+.App .cards {
+  height: 100%;
+  width: 100%;
+  background-color: var(--secondary-background-color);
+  padding: var(--md);
+  text-align: center;
+}
+.App .cards .card {
+  margin-top: var(--md);
+  border-radius: var(--md);
+  background-color: var(--primary-text-color);
+  color: var(--primary-background-color);
+  width: 100%;
+  padding: var(--md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.App .cards .card p {
+  font-size: var(--text-md);
+}
+.App .cards .card button {
+  padding: var(--md) var(--xl);
+  font-size: var(--text-md);
+  font-weight: 600;
+  border-radius: var(--md);
+  border: none;
+  background-color: var(--secondary-btn-color);
+  color: var(--primary-text-color);
+  text-transform: uppercase;
+}/*# sourceMappingURL=App.css.map */
