@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  background-color: #333;
+  font-size: 1.5rem;
+  color: #dadada;
+
+  .navbar,
+  .footer {
+    height: 10vh;
+    background-color: rgb(135, 128, 228);
+    padding: 1rem;
+
+  }
+
+  .section {
+    height: 80vh;
+    padding: 1rem;
+  }
+}
