@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.App {
+    height: 100%;
+    width: 100%;
+    padding: 25px 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    color: #dadada;
+
+    h1 {
+        font-size: 250px;
+    }
+}
