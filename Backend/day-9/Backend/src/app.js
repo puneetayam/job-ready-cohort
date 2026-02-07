@@ -17,7 +17,6 @@ const path = require("path")
 
 
 const app = express(); // create express server instance
-let notes = [];
 
 
 // Middleware
@@ -35,7 +34,7 @@ app.post("/notes", async (req, res) => {
         description: description
     })
 
-    notes = await noteModel.find();
+    const notes = await noteModel.find();
 
     res.status(201).json({
         message: "note created successfully",
@@ -47,7 +46,7 @@ app.post("/notes", async (req, res) => {
 /* GET /notes -> get all notes */
 app.get("/notes", async (req, res) => {
 
-    notes = await noteModel.find();
+    const notes = await noteModel.find();
 
     res.status(200).json({
         message: "fetched all notes",
@@ -60,7 +59,7 @@ app.get("/notes/:id", async (req, res) => {
 
     const id = req.params.id;
 
-    notes = await noteModel.find();
+    const notes = await noteModel.find();
 
     res.status(200).json({
         message: "note fetched",
@@ -95,7 +94,7 @@ app.patch("/notes/:id", async (req, res) => {
             }
         });
 
-    notes = await noteModel.find();
+    const notes = await noteModel.find();
 
     res.status(200).json({
         message: "note id data is updated",
