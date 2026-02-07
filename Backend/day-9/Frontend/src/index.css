@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #222;
+  color: #dadada;
+}
+
+.main {
+  padding: 1rem;
+}
+
+.notes {
+  height: 100%;
+  width: 100%;
+  padding: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.note-wrapper {
+  height: 200px;
+  width: 300px;
+  position: relative;
+}
+
+.note {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #dadada;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.note h1 {
+  text-transform: capitalize;
+}
+
+.note p {
+  color: #dadadacf;
+}
+
+.btn {
+  color: #333;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.btn-green {
+  background-color: lightgreen;
+}
+
+.note-create-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  padding: 10px 15px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.all-btn {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.note-update-form {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1
+}
+
+.note-update-form .input-field {
+  width: 100%;
+}
+
+.note-update-form .btn-yellow {
+  align-self: flex-end;
+}
