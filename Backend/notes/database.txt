@@ -1,0 +1,18 @@
+cluster = storage + processor
+latency = time taken by read or write process
+database server (managing data)
+    - MongoDB Atlas -> cloud (data storage)
+    - MongoDB compass -> GUI (visualization of data from cloud to device)
+
+MongoDB Atlas:
+    - database security: two layer security we use here
+        - Database access:
+            - Database users: 
+        - Network access:
+            - IP access list
+                - currently we are using open IP for learning. (Note: don't use it in production server)
+
+    - process:
+        - create project
+        - create cluster inside it
+        - connect it with mongoDB compass by using connected string.
