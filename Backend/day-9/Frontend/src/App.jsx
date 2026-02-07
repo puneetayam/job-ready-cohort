@@ -72,6 +72,8 @@ const App = () => {
     await axios.post("https://day-9-tdwl.onrender.com/notes", note)
       .then(res => console.log(res.data))
       .catch((error) => console.log(error))
+
+    getAllNotes();
   }
 
   async function handleUpdateNoteForm(e, id) {
@@ -108,24 +110,25 @@ const App = () => {
         {notes.map((note) => {
           return <div className='note-wrapper' key={note._id}>
             {
-              isEditing === note._id &&
-              <form className='note note-update-form' onSubmit={(e) => handleUpdateNoteForm(e, note._id)} >
-                <input className='input-field' type="text" defaultValue={note.title} name='title' />
-                <input className='input-field' type="text" defaultValue={note.description} name='description' />
-                <div className='all-btn'>
-                  <button className='btn' type='submit'>update</button>
-                  <button className='btn' onClick={() => setIsEditing(null)}>cancel</button>
+              isEditing === note._id ?
+                <form className='note note-update-form' onSubmit={(e) => handleUpdateNoteForm(e, note._id)} >
+                  <input className='input-field' type="text" defaultValue={note.title} name='title' />
+                  <input className='input-field' type="text" defaultValue={note.description} name='description' />
+                  <div className='all-btn'>
+                    <button className='btn' type='submit'>update</button>
+                    <button className='btn' onClick={() => setIsEditing(null)}>cancel</button>
+                  </div>
+                </form>
+                :
+                <div className="note">
+                  <h1>{note.title}</h1>
+                  <p>{note.description}</p>
+                  <div className='all-btn'>
+                    <button className='btn' onClick={() => setIsEditing(note._id)}>update</button>
+                    <button className='btn' onClick={() => handleDeleteNote(note._id)}>Delete</button>
+                  </div>
                 </div>
-              </form>}
-
-            <div className="note">
-              <h1>{note.title}</h1>
-              <p>{note.description}</p>
-              <div className='all-btn'>
-                <button className='btn' onClick={() => setIsEditing(note._id)}>update</button>
-                <button className='btn' onClick={() => handleDeleteNote(note._id)}>Delete</button>
-              </div>
-            </div>
+            }
           </div>
         })}
       </div>
