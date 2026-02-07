@@ -46,14 +46,14 @@ const App = () => {
   const [isEditing, setIsEditing] = useState(null);
 
   async function getAllNotes() {
-    await axios.get("http://localhost:3000/notes")
+    await axios.get("https://day-9-tdwl.onrender.com/notes")
       .then((res) => setNotes(res.data.notes))
       .catch((error) => console.log(error))
   }
 
   async function handleDeleteNote(id) {
 
-    await axios.delete(`http://localhost:3000/notes/${id}`)
+    await axios.delete(`https://day-9-tdwl.onrender.com/notes/${id}`)
       .then((res) => console.log(res))
 
     getAllNotes();
@@ -69,7 +69,7 @@ const App = () => {
       description: description.value
     };
 
-    await axios.post("http://localhost:3000/notes", note)
+    await axios.post("https://day-9-tdwl.onrender.com/notes", note)
       .then(res => console.log(res.data))
       .catch((error) => console.log(error))
   }
@@ -83,7 +83,7 @@ const App = () => {
       description: description.value
     }
 
-    await axios.patch(`http://localhost:3000/notes/${id}`, note)
+    await axios.patch(`https://day-9-tdwl.onrender.com/notes/${id}`, note)
       .then(res => setNotes(res.data.notes))
       .catch((error) => console.log(error))
 
