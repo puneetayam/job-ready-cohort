@@ -1,7 +1,7 @@
 require("dotenv").config();
 const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 
 async function registerController(req, res) {
 
@@ -27,7 +27,9 @@ async function registerController(req, res) {
         })
     }
 
-    const hash = crypto.createHash("sha256").update(password).digest("hex");
+    // const hash = crypto.createHash("sha256").update(password).digest("hex");
+
+    const hash = await bcrypt.hash(password, 10);
 
     const user = await userModel.create({
         username,
@@ -38,12 +40,13 @@ async function registerController(req, res) {
     });
 
     const token = jwt.sign({
-        id: user._id
+        id: user._id,
+        username: user.username
     },
         process.env.JWT_SECRET
     );
 
-    res.cookie("jwt_token", token, { expiresIn: "1d" });
+    res.cookie("token", token, { expiresIn: "1d" });
 
     res.status(201).json({
         message: "user created successfully",
@@ -89,9 +92,14 @@ async function loginController(req, res) {
         })
     }
 
-    const hash = crypto.createHash("sha256").update(password).digest("hex");
+    /*
+        - previous method using crypto:
+        const hash = crypto.createHash("sha256").update(password).digest("hex");
+    
+        const isPasswordValid = user.password === hash;
+     */
 
-    const isPasswordValid = user.password === hash;
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
         return res.status(401).json({
@@ -100,12 +108,13 @@ async function loginController(req, res) {
     }
 
     const token = jwt.sign({
-        id: user._id
+        id: user._id,
+        username: user.username
     },
         process.env.JWT_SECRET
     )
 
-    res.cookie("token", token);
+    res.cookie("token", token, { expiresIn: "1d" });
 
     res.status(200).json({
         message: "user logged in successfully",

@@ -20,3 +20,76 @@ Requirements:
     - Users:
         - followers
         - following
+
+
+/========================================================================================================================
+
+initial user schema :
+{
+    username : string,
+    email: String,
+    pasword: String,
+    bio: String,
+    profile-image: file,
+    followers : store user id in an array,
+    following: store user id in an array
+}
+
+    problem with this approach:
+        - document can store upto 16MB data.
+        - 1 object id = 12 bytes
+        so we can store upto (16 * 1000 / 12) = 1333 user id. 
+        It is facing problem in scalability 
+
+    solution:
+        - edge collection:
+            - rather than storing followers and follow relationship in an array, make a separte document we can store upto million documents in mongodb database
+
+        store data like this:
+            follow {
+                follower: user-A id,
+                follower: user-B id,
+                createdAt: 
+            }
+
+            follower: jo follow kr rha h,
+            followee: jis user ko follow kr rha h
+
+post schema: 
+{
+    caption: string,
+    image-url: String,
+}
+
+/====================================================================================
+
+Explanation
+The correct option is ✅ Both: Indexing for performance and findOne for logic.
+
+- Indexing (followSchema.index): 
+    This is a database configuration. It creates a high-speed lookup table so the database doesn't have to scan every single document to find a match. Without this, your app will become extremely slow as your user base grows.
+
+- Querying (findOne): 
+    This is the application logic. You use this in your code to check if a relationship exists before allowing a user to click "Follow," preventing duplicate UI states or logic errors.
+
+Why choosing only one is incorrect
+
+❌ Using only findOne: Without an index, the database performs a "Collection Scan." If you have 1 million rows, MongoDB looks at 1 million items just to see if User A follows User B. This causes high CPU usage and slow response times.
+
+❌ Using only Indexing: An index alone doesn't "do" anything in your code logic; it just makes searches faster. You still need to write the findOne query to actually check the database and decide whether to send an error message to the user.
+
+The "Gold Standard" Implementation
+    - Use a Unique Compound Index in your schema to physically prevent duplicates at the database level.
+    - Use findOne in your controller to check for existing follows so you can return a clean, human-readable error message (like "You already follow this user") instead of a raw database crash.
+
+/==========================================================================================================
+
+Task:
+    - user ke pass jitne bhi follow request aayi h, use vo accept ya reject kr skta h.
+    - solution approach: 
+        - create api PUT /api/users/follow/:followerId
+        - send obj {status : "accept" or "rejected"}
+        - get follow requests from followerId\
+        - update kro
+
+    
