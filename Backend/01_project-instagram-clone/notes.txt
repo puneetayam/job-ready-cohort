@@ -1,0 +1,26 @@
+process to make:
+    - create react app using vite
+    - clean the unwanted things (files, folders)
+    
+    For centralized routing:
+        - create routes.jsx file
+            - create all routes in createBrowserRouter([RoutesObject]) and store it in variable like routes
+            - export default routes
+        - import it in app.jsx file
+            - import RouterProvider from react-router-dom
+            - write this at top of jsx return code :
+                -  <RouterProvider router= {routes}>
+    
+    For folder structure:
+        - features
+            - auth
+                - Login.jsx
+                - Register.jsx
+            - post
+
+
+    For styling:
+        - here we use scss
+            - for setup in react we need :
+                - npm i sass
+                - note:  if you have scss extension like (live sass compiler) in vs code try to disable it before use.

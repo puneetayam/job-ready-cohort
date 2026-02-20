@@ -1,0 +1,43 @@
+import React, { useState } from 'react';
+import "../style/form.scss";
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+
+const Login = () => {
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const { handleLogin } = useAuth();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        handleLogin(username, password)
+            .then(res => console.log(res));
+    }
+
+    return (
+        <main>
+            <div className="form-container">
+                <h1>Login</h1>
+                <form onSubmit={submitHandler}>
+                    <input
+                        onInput={(e) => setUsername(e.target.value)}
+                        value={username}
+                        type="text"
+                        name='username'
+                        placeholder='Enter username' />
+                    <input
+                        onInput={(e) => setPassword(e.target.value)}
+                        value={password}
+                        type="password"
+                        name='password'
+                        placeholder='Enter password' />
+                    <button type='submit'>Login</button>
+                </form>
+                <p>Don't have an account? <Link className='toggleAuthForm' to="/register">Register</Link></p>
+            </div>
+        </main>
+    )
+}
+
+export default Login;
